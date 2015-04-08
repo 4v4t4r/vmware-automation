@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 #
+# publish_vms_from_template_into_existing_application.py : a program 
+# that updates an existing Ravello application with several additional
+# VMs cloned from the same template image.
+#
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
