@@ -76,29 +76,24 @@ def main():
     number = args.number[0]
     basename = args.basename[0]
 
-    app_found = 0
-    img_found = 0
     client = RavelloClient()
     client.login(username, password)
 
-    for app in client.get_applications():
-        if (app['id'] == app_id):
-            app_found = 1
-            break
-    if (app_found == 0):
-        print("Application {} not found".format(app_id))
+    try:
+        app = client.get_application(app_id)
+    except Exception as e:
+        s = str(e)
+        print(e)
         sys.exit(-1)
     print('Found Application: {0}'.format(app['name']))
-    app = client.get_application(app_id)
 
-    for img in client.get_images():
-        if (img['id'] == template_id):
-            img_found = 1
-            break
-    if (img_found == 0):
-        print("Image {} not found".format(template_id))
+    try:
+        img = client.get_image(template_id)
+    except Exception as e:
+        s = str(e)
+        print(e)
         sys.exit(-1)
-    img = client.get_image(template_id)
+    print('Found template: {0}'.format(img['name']))
 
     for i in range(number):
         create_compute_vm(app, img, i+1, basename)
